@@ -36,7 +36,75 @@
                     <view key="view" contentMode="scaleToFill" id="K4N-OB-xHO" customClass="GradientView" customModule="Smack" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Smack" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jz8-Q0-7I2">
+                                <rect key="frame" x="16" y="41" width="52" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="52" id="HfG-O6-VCQ"/>
+                                    <constraint firstAttribute="height" constant="24" id="JCB-oS-eqC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Semibold" family="Kohinoor Devanagari" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANNELS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lin-zl-ZwK">
+                                <rect key="frame" x="16" y="70" width="68" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="leK-vm-R02"/>
+                                    <constraint firstAttribute="width" constant="68" id="yqo-fN-rOU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="14"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EpR-WL-x8b">
+                                <rect key="frame" x="230" y="71" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="CZw-AI-j95"/>
+                                    <constraint firstAttribute="height" constant="18" id="lcM-hk-ib1"/>
+                                </constraints>
+                                <state key="normal" image="addChannelButton"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-zA-AGF">
+                                <rect key="frame" x="119" y="504" width="42" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="LwD-Ah-ri1"/>
+                                    <constraint firstAttribute="width" constant="42" id="spn-4W-vXy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuProfileIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KaW-Yd-JS3">
+                                <rect key="frame" x="16" y="477" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="2zr-t9-KPK"/>
+                                    <constraint firstAttribute="height" constant="75" id="rWR-iw-gO7"/>
+                                </constraints>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SSk-vR-FTV">
+                                <rect key="frame" x="0.0" y="107" width="320" height="353"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.11372549019607843" green="0.35686274509803922" blue="0.76470588235294112" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="V7n-zA-AGF" firstAttribute="centerY" secondItem="KaW-Yd-JS3" secondAttribute="centerY" id="0f0-Tb-054"/>
+                            <constraint firstItem="lin-zl-ZwK" firstAttribute="top" secondItem="Jz8-Q0-7I2" secondAttribute="bottom" constant="5" id="9Vb-x2-eQh"/>
+                            <constraint firstItem="SSk-vR-FTV" firstAttribute="leading" secondItem="xer-7b-gzx" secondAttribute="leading" id="Bfv-1R-Lga"/>
+                            <constraint firstItem="SSk-vR-FTV" firstAttribute="top" secondItem="lin-zl-ZwK" secondAttribute="bottom" constant="17" id="Mzd-yQ-WWQ"/>
+                            <constraint firstItem="KaW-Yd-JS3" firstAttribute="top" secondItem="SSk-vR-FTV" secondAttribute="bottom" constant="17" id="O7E-52-h8Z"/>
+                            <constraint firstItem="KaW-Yd-JS3" firstAttribute="leading" secondItem="xer-7b-gzx" secondAttribute="leading" constant="16" id="bcA-gm-nXD"/>
+                            <constraint firstItem="xer-7b-gzx" firstAttribute="bottom" secondItem="KaW-Yd-JS3" secondAttribute="bottom" constant="16" id="dhR-hA-zhY"/>
+                            <constraint firstItem="lin-zl-ZwK" firstAttribute="leading" secondItem="xer-7b-gzx" secondAttribute="leading" constant="16" id="egZ-9w-pWD"/>
+                            <constraint firstItem="Jz8-Q0-7I2" firstAttribute="leading" secondItem="xer-7b-gzx" secondAttribute="leading" constant="16" id="gPo-jq-iJP"/>
+                            <constraint firstItem="EpR-WL-x8b" firstAttribute="centerY" secondItem="lin-zl-ZwK" secondAttribute="centerY" id="gvI-3B-A02"/>
+                            <constraint firstItem="SSk-vR-FTV" firstAttribute="trailing" secondItem="xer-7b-gzx" secondAttribute="trailing" id="sIo-ac-a44"/>
+                            <constraint firstItem="Jz8-Q0-7I2" firstAttribute="top" secondItem="xer-7b-gzx" secondAttribute="top" constant="21" id="tOw-KN-bNb"/>
+                            <constraint firstItem="V7n-zA-AGF" firstAttribute="leading" secondItem="KaW-Yd-JS3" secondAttribute="trailing" constant="28" id="uPt-mL-kGt"/>
+                            <constraint firstItem="xer-7b-gzx" firstAttribute="trailing" secondItem="EpR-WL-x8b" secondAttribute="trailing" constant="72" id="v49-m2-Urx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xer-7b-gzx"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
@@ -107,6 +175,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="addChannelButton" width="22" height="22"/>
+        <image name="menuProfileIcon" width="99" height="99"/>
         <image name="smackBurger" width="40" height="40"/>
     </resources>
 </document>
