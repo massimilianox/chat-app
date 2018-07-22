@@ -12,14 +12,14 @@ import UIKit
 class GradientView: UIView {
     
     // Able to change the storyboard dynamically
-    @IBInspectable var topColor: UIColor = UIColor.blue {
+    @IBInspectable var topColor: UIColor = #colorLiteral(red: 0.1137254902, green: 0.3568627451, blue: 0.7254901961, alpha: 1) {
         didSet {
             self.setNeedsLayout() // this actually call layoutSubviews()
         }
     }
     
     // Able to change the storyboard dynamically
-    @IBInspectable var bottomColor: UIColor = UIColor.yellow {
+    @IBInspectable var bottomColor: UIColor = #colorLiteral(red: 0.4196078431, green: 0.6470588235, blue: 0.7647058824, alpha: 1) {
         didSet {
             self.setNeedsLayout() // this actually call layoutSubviews()
         }
