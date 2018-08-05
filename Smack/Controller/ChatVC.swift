@@ -19,7 +19,7 @@ class ChatVC: UIViewController {
         // Set the action touchUpInside with #selector to SWRevealViewController.revealToggle(_:)
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
         
-        // Gesture recognizer built in SWRevealViewController
+        // Gesture recognizer built in SWRevealViewController to swap the view back and forth
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
         
