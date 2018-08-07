@@ -16,6 +16,12 @@ let URL_REGISTER = "\(BASE_URL)account/register"
 let URL_LOGIN = "\(BASE_URL)account/login"
 let URL_ADD_USER = "\(BASE_URL)user/add"
 
+// colors
+let smakFormPlaceholer = #colorLiteral(red: 0, green: 0.3632077575, blue: 0.7506918311, alpha: 0.6)
+
+// notifications
+let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataChenge")
+
 // segue
 let TO_LOGIN = "loginVC"
 let TO_CREATE_ACCOUNT = "createAccountVC"
