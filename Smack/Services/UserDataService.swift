@@ -30,4 +30,35 @@ class UserDataService {
         self.avatarName = avatarName
     }
     
+    func returnUIColor(component: String) -> UIColor {
+        
+        let scanner = Scanner(string: component)
+        let skip = CharacterSet(charactersIn: "[], ")
+        let split = CharacterSet(charactersIn: ",")
+        scanner.charactersToBeSkipped = skip
+        
+        var r, g, b, a: NSString?
+        scanner.scanUpToCharacters(from: split, into: &r)
+        scanner.scanUpToCharacters(from: split, into: &g)
+        scanner.scanUpToCharacters(from: split, into: &g)
+        scanner.scanUpToCharacters(from: split, into: &a)
+        
+        let defaultColor = UIColor.lightGray
+        
+        guard let rUnwrap = r else { return defaultColor }
+        guard let gUnwrap = g else { return defaultColor }
+        guard let bUnwrap = b else { return defaultColor }
+        guard let aUnwrap = a else { return defaultColor }
+        
+        let rFloat = CGFloat(rUnwrap.doubleValue)
+        let gFloat = CGFloat(gUnwrap.doubleValue)
+        let bFloat = CGFloat(bUnwrap.doubleValue)
+        let aFloat = CGFloat(aUnwrap.doubleValue)
+        
+        let newColor = UIColor(red: rFloat, green: gFloat, blue: bFloat, alpha: aFloat)
+        
+        return newColor
+        
+    }
+    
 }

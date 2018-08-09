@@ -66,8 +66,8 @@
                                 </constraints>
                                 <state key="normal" image="addChannelButton"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-zA-AGF">
-                                <rect key="frame" x="100" y="504" width="42" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-zA-AGF">
+                                <rect key="frame" x="100" y="504" width="204" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="LwD-Ah-ri1"/>
                                     <constraint firstAttribute="width" constant="42" id="spn-4W-vXy"/>
@@ -143,6 +143,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="avatarImg" destination="KaW-Yd-JS3" id="WIf-Sh-yQV"/>
                         <outlet property="loginBtn" destination="V7n-zA-AGF" id="2sB-Ff-tm3"/>
                         <segue destination="6es-he-fvf" kind="show" identifier="loginVC" id="oEN-pi-Ykh"/>
                     </connections>
