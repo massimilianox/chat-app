@@ -31,7 +31,6 @@ class UserDataService {
     }
     
     func returnUIColor(component: String) -> UIColor {
-        
         let scanner = Scanner(string: component)
         let skip = CharacterSet(charactersIn: "[], ")
         let split = CharacterSet(charactersIn: ",")
@@ -40,7 +39,7 @@ class UserDataService {
         var r, g, b, a: NSString?
         scanner.scanUpToCharacters(from: split, into: &r)
         scanner.scanUpToCharacters(from: split, into: &g)
-        scanner.scanUpToCharacters(from: split, into: &g)
+        scanner.scanUpToCharacters(from: split, into: &b)
         scanner.scanUpToCharacters(from: split, into: &a)
         
         let defaultColor = UIColor.lightGray

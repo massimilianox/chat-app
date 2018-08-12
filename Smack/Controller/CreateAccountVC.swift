@@ -69,6 +69,7 @@ class CreateAccountVC: UIViewController {
                                 self.spinner.isHidden = true
                                 self.spinner.stopAnimating()
                                 self.performSegue(withIdentifier: UNWIND_TO_CHANNEL, sender: nil)
+                                print("Success User created: \(UserDataService.instance.avatarColor)")
                                 NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                             }
                         })
@@ -90,6 +91,8 @@ class CreateAccountVC: UIViewController {
         UIView.animate(withDuration: 0.2) {
             self.userImg.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1)
         }
+        
+        avatarColor = "[\(r), \(g), \(b), 1]"
     }
     
     func setupView() {
