@@ -15,6 +15,7 @@ let BASE_URL = "http://localhost:3005/v1/"
 let URL_REGISTER = "\(BASE_URL)account/register"
 let URL_LOGIN = "\(BASE_URL)account/login"
 let URL_ADD_USER = "\(BASE_URL)user/add"
+let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 
 // colors
 let smakFormPlaceholer = #colorLiteral(red: 0, green: 0.3632077575, blue: 0.7506918311, alpha: 0.6)
@@ -32,3 +33,12 @@ let TO_AVATAR_PICKER = "toAvatarPicker"
 let TOKEN_KEY = "token"
 let LOGGED_IN_KEY = "loggedInKey"
 let USER_EMAIL = "userEmail"
+
+// header
+let HEADER = [
+    "Content-Type": "application/json; charset=utf-8"
+]
+let BEARER_HEADER = [
+    "Authorization": "Bearer \(AuthService.instance.authToken)",
+    "Content-Type": "application/json; charset=utf-8"
+]

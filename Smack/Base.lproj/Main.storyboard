@@ -66,11 +66,10 @@
                                 </constraints>
                                 <state key="normal" image="addChannelButton"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-zA-AGF">
-                                <rect key="frame" x="100" y="504" width="204" height="20"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="V7n-zA-AGF">
+                                <rect key="frame" x="100" y="504" width="42" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="LwD-Ah-ri1"/>
-                                    <constraint firstAttribute="width" constant="42" id="spn-4W-vXy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="17"/>
                                 <state key="normal" title="Login">
@@ -270,14 +269,20 @@
                                     <action selector="createAccountBtnPressed:" destination="6es-he-fvf" eventType="touchUpInside" id="UPt-En-YdQ"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lVO-0N-fN7">
+                                <rect key="frame" x="141.5" y="230.5" width="37" height="37"/>
+                                <color key="color" red="0.1137254902" green="0.35686274509999999" blue="0.72511042179999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="AKb-CV-F1Y" firstAttribute="top" secondItem="EgB-dK-ZD1" secondAttribute="bottom" constant="40" id="02H-li-n2m"/>
                             <constraint firstItem="EgB-dK-ZD1" firstAttribute="centerX" secondItem="3R1-TK-XMh" secondAttribute="centerX" id="0mQ-u1-WXP"/>
+                            <constraint firstItem="lVO-0N-fN7" firstAttribute="centerX" secondItem="3R1-TK-XMh" secondAttribute="centerX" id="BbT-fe-4Eh"/>
                             <constraint firstItem="X32-eh-h3X" firstAttribute="top" secondItem="wmk-5v-JRl" secondAttribute="top" constant="10" id="DdV-7H-Rpt"/>
                             <constraint firstItem="HoU-A8-PZc" firstAttribute="centerX" secondItem="3R1-TK-XMh" secondAttribute="centerX" id="EaM-HM-sj5"/>
                             <constraint firstItem="YMz-XV-hhP" firstAttribute="centerX" secondItem="3R1-TK-XMh" secondAttribute="centerX" id="JRh-l4-iaT"/>
+                            <constraint firstItem="lVO-0N-fN7" firstAttribute="centerY" secondItem="3R1-TK-XMh" secondAttribute="centerY" constant="-35" id="YYm-Zv-dBF"/>
                             <constraint firstItem="EgB-dK-ZD1" firstAttribute="top" secondItem="wmk-5v-JRl" secondAttribute="top" constant="55" id="dyH-O1-Xyq"/>
                             <constraint firstItem="wmk-5v-JRl" firstAttribute="trailing" secondItem="X32-eh-h3X" secondAttribute="trailing" constant="16" id="edr-aX-bHc"/>
                             <constraint firstItem="AKb-CV-F1Y" firstAttribute="centerX" secondItem="3R1-TK-XMh" secondAttribute="centerX" id="nTy-A6-5wp"/>
@@ -289,6 +294,7 @@
                     <connections>
                         <outlet property="emailTxt" destination="BTk-St-t1v" id="fh3-Qr-EWw"/>
                         <outlet property="passwordTxt" destination="YIq-R8-K8f" id="dkX-3r-2NF"/>
+                        <outlet property="spinner" destination="lVO-0N-fN7" id="CdY-Tm-ftl"/>
                         <segue destination="VzI-R8-t1d" kind="show" identifier="createAccountVC" id="0JX-KK-xZi"/>
                     </connections>
                 </viewController>

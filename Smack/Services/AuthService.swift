@@ -45,16 +45,12 @@ class AuthService {
     func registerUser(email: String, password: String, completion: @escaping CompletionHandler) {
         let lowerCaseEmail = email.lowercased()
         
-        let header = [
-            "Content-Type": "application/json; charset=utf-8"
-        ]
-        
         let body: [String: Any] = [
             "email": lowerCaseEmail,
             "password": password
         ]
         
-        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseString { (response) in
+        Alamofire.request(URL_REGISTER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseString { (response) in
             if response.result.error == nil {
                 completion(true)
             } else {
@@ -68,15 +64,12 @@ class AuthService {
         
         let lowerCaseEmail = email.lowercased()
         
-        let header = [
-            "Content-Type": "application/json; charset=utf-8"
-        ]
         let body: [String: Any] = [
             "email": lowerCaseEmail,
             "password": password
         ]
         
-        Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        Alamofire.request(URL_LOGIN, method: .post, parameters: body, encoding: JSONEncoding.default, headers: HEADER).responseJSON { (response) in
             if response.result.error == nil {
                 
 //                // Ordinary way to rip off JSON data from a response
@@ -95,6 +88,8 @@ class AuthService {
                 self.userEmail = json["user"].stringValue // .stringvalue implicitly and safely unwrap a value
                 self.authToken = json["token"].stringValue
                 
+                debugPrint("request login: \(self.userEmail), \(self.authToken)")
+                
                 self.isLoggedIn = true
                 completion(true)
             } else {
@@ -108,10 +103,6 @@ class AuthService {
         
         let lowerCaseEmail = email.lowercased()
         
-        let header = [
-            "Authorization": "Bearer \(AuthService.instance.authToken)",
-            "Content-Type": "application/json; charset=utf-8"
-        ]
         let body: [String: Any] = [
             "name": name,
             "email": lowerCaseEmail,
@@ -119,7 +110,7 @@ class AuthService {
             "avatarColor": avatarColor
         ]
         
-        Alamofire.request(URL_ADD_USER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
+        Alamofire.request(URL_ADD_USER, method: .post, parameters: body, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
             
             if response.result.error == nil {
                 guard let data = response.data else { return }
@@ -136,6 +127,22 @@ class AuthService {
         
     }
     
+    func findUserByEmail(completion: @escaping CompletionHandler ) {
+        
+        Alamofire.request("\(URL_USER_BY_EMAIL)\(self.userEmail)", method: .get, parameters: nil, encoding: JSONEncoding.default, headers: BEARER_HEADER).responseJSON { (response) in
+
+            if response.result.error == nil {
+                guard let data = response.data else { return }
+                let json = JSON(data)
+                UserDataService.instance.setUserData(id: json["_id"].stringValue, avatarName: json["avatarName"].stringValue, avatarColor: json["avatarColor"].stringValue, email: json["email"].stringValue, name: json["name"].stringValue)
+
+                completion(true)
+            } else {
+                completion(false)
+                debugPrint("error: \(response.result.error as Any)")
+            }
+        }
+    }
 }
 
 
