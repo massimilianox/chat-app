@@ -27,6 +27,9 @@
 		3B953C292105220500E56AC7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B953C282105220500E56AC7 /* GradientView.swift */; };
 		3BE408A6211A2DC80042C152 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE408A5211A2DC80042C152 /* CircleImage.swift */; };
 		3BE7B262210909E200BC15E9 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE7B261210909E200BC15E9 /* CreateAccountVC.swift */; };
+		3BEBCEF32121E4AF00E22B3F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEF22121E4AF00E22B3F /* Channel.swift */; };
+		3BEBCEF52121E8F600E22B3F /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEF42121E8F600E22B3F /* MessageService.swift */; };
+		3BEBCEFA2121FF7E00E22B3F /* ChannelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEF92121FF7E00E22B3F /* ChannelDecodable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		3B953C282105220500E56AC7 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3BE408A5211A2DC80042C152 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		3BE7B261210909E200BC15E9 /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
+		3BEBCEF22121E4AF00E22B3F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		3BEBCEF42121E8F600E22B3F /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
+		3BEBCEF92121FF7E00E22B3F /* ChannelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDecodable.swift; sourceTree = "<group>"; };
 		7F7B7DD87B26F088EAB39DAB /* Pods-Smack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.release.xcconfig"; sourceTree = "<group>"; };
 		E0BC45B9B7B5082D75F0843C /* Pods-Smack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +106,7 @@
 			children = (
 				3B595FA42115AA3E004CC4AD /* AuthService.swift */,
 				3B7C2128211748EC0069EB45 /* UserDataService.swift */,
+				3BEBCEF42121E8F600E22B3F /* MessageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -154,6 +161,8 @@
 		3B953C2121050A9600E56AC7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3BEBCEF22121E4AF00E22B3F /* Channel.swift */,
+				3BEBCEF92121FF7E00E22B3F /* ChannelDecodable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,7 +323,10 @@
 				3B953C2721050BAD00E56AC7 /* ChannelVC.swift in Sources */,
 				3B7C212B2117843E0069EB45 /* AvatarPickerVC.swift in Sources */,
 				3B595FA7211635A4004CC4AD /* RoundedButton.swift in Sources */,
+				3BEBCEFA2121FF7E00E22B3F /* ChannelDecodable.swift in Sources */,
+				3BEBCEF32121E4AF00E22B3F /* Channel.swift in Sources */,
 				3BE408A6211A2DC80042C152 /* CircleImage.swift in Sources */,
+				3BEBCEF52121E8F600E22B3F /* MessageService.swift in Sources */,
 				3B953C2521050B9C00E56AC7 /* ChatVC.swift in Sources */,
 				3B7C2129211748EC0069EB45 /* UserDataService.swift in Sources */,
 				3BE7B262210909E200BC15E9 /* CreateAccountVC.swift in Sources */,
