@@ -35,14 +35,13 @@ class MessageService {
 //
 //                completion(true)
                 
-                // JSON DECODE WITH SWIFTYJSON, you can ignore so e properties from the response
+                // JSON DECODE WITH SWIFTYJSON, you can ignore properties from the response
                 if let json = JSON(data).array {
                     for item in json {
                         let channel = Channel(id: item["_id"].stringValue, channelTitle: item["name"].stringValue, channelDescritpion: item["description"].stringValue)
                         self.channels.append(channel)
                     }
 
-                    print(self.channels)
                     completion(true)
                 }
                 
