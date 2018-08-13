@@ -31,6 +31,8 @@
 		3BEBCEF52121E8F600E22B3F /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEF42121E8F600E22B3F /* MessageService.swift */; };
 		3BEBCEFA2121FF7E00E22B3F /* ChannelDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEF92121FF7E00E22B3F /* ChannelDecodable.swift */; };
 		3BEBCEFC212205EA00E22B3F /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEFB212205EA00E22B3F /* ChannelCell.swift */; };
+		3BEBCF032122135C00E22B3F /* AddChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCF012122135C00E22B3F /* AddChannelVC.swift */; };
+		3BEBCF042122135C00E22B3F /* AddChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBCF022122135C00E22B3F /* AddChannelVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		3BEBCEF42121E8F600E22B3F /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		3BEBCEF92121FF7E00E22B3F /* ChannelDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDecodable.swift; sourceTree = "<group>"; };
 		3BEBCEFB212205EA00E22B3F /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		3BEBCF012122135C00E22B3F /* AddChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelVC.swift; sourceTree = "<group>"; };
+		3BEBCF022122135C00E22B3F /* AddChannelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelVC.xib; sourceTree = "<group>"; };
 		7F7B7DD87B26F088EAB39DAB /* Pods-Smack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.release.xcconfig"; sourceTree = "<group>"; };
 		E0BC45B9B7B5082D75F0843C /* Pods-Smack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -91,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				3B011F1B2120688700375DFC /* ProfileVC.xib */,
+				3BEBCF022122135C00E22B3F /* AddChannelVC.xib */,
 			);
 			path = XIBs;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				3BE7B261210909E200BC15E9 /* CreateAccountVC.swift */,
 				3B7C212A2117843E0069EB45 /* AvatarPickerVC.swift */,
 				3B011F1A2120688700375DFC /* ProfileVC.swift */,
+				3BEBCF012122135C00E22B3F /* AddChannelVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BEBCF042122135C00E22B3F /* AddChannelVC.xib in Resources */,
 				3B011F1D2120688700375DFC /* ProfileVC.xib in Resources */,
 				3B84F57A2104F0B600F7D54D /* LaunchScreen.storyboard in Resources */,
 				3B84F5772104F0B600F7D54D /* Assets.xcassets in Resources */,
@@ -338,6 +345,7 @@
 				3BEBCEFC212205EA00E22B3F /* ChannelCell.swift in Sources */,
 				3B953C292105220500E56AC7 /* GradientView.swift in Sources */,
 				3B7C212D211788FC0069EB45 /* AvatarCell.swift in Sources */,
+				3BEBCF032122135C00E22B3F /* AddChannelVC.swift in Sources */,
 				3B84F5702104F0B600F7D54D /* AppDelegate.swift in Sources */,
 				3B953C1F2105063800E56AC7 /* SWRevealViewController.m in Sources */,
 				3B20A2912106820200FED039 /* Constants.swift in Sources */,

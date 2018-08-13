@@ -16,7 +16,6 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var avatarImg: CircleImage!
     @IBOutlet weak var tableView: UITableView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +38,15 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             present(profile, animated: true, completion: nil)
         } else {
             performSegue(withIdentifier: TO_LOGIN, sender: nil)
+        }
+    }
+    
+    
+    @IBAction func addChannelPressed(_ sender: Any) {
+        if AuthService.instance.isLoggedIn {
+            let addChannelVC = AddChannelVC()
+            addChannelVC.modalPresentationStyle = .custom
+            present(addChannelVC, animated: true, completion: nil)
         }
     }
     
@@ -72,6 +80,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         return UITableViewCell()
     }
+    
     
     
 }
