@@ -33,6 +33,7 @@
 		3BEBCEFC212205EA00E22B3F /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEFB212205EA00E22B3F /* ChannelCell.swift */; };
 		3BEBCF032122135C00E22B3F /* AddChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCF012122135C00E22B3F /* AddChannelVC.swift */; };
 		3BEBCF042122135C00E22B3F /* AddChannelVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBCF022122135C00E22B3F /* AddChannelVC.xib */; };
+		3BEBCF062122C39800E22B3F /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCF052122C39800E22B3F /* SocketService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		3BEBCEFB212205EA00E22B3F /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		3BEBCF012122135C00E22B3F /* AddChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelVC.swift; sourceTree = "<group>"; };
 		3BEBCF022122135C00E22B3F /* AddChannelVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddChannelVC.xib; sourceTree = "<group>"; };
+		3BEBCF052122C39800E22B3F /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
 		7F7B7DD87B26F088EAB39DAB /* Pods-Smack.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.release.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.release.xcconfig"; sourceTree = "<group>"; };
 		E0BC45B9B7B5082D75F0843C /* Pods-Smack.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Smack.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Smack/Pods-Smack.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -114,6 +116,7 @@
 				3B595FA42115AA3E004CC4AD /* AuthService.swift */,
 				3B7C2128211748EC0069EB45 /* UserDataService.swift */,
 				3BEBCEF42121E8F600E22B3F /* MessageService.swift */,
+				3BEBCF052122C39800E22B3F /* SocketService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				3B595FA52115AA3E004CC4AD /* AuthService.swift in Sources */,
 				3B20A2932107A64900FED039 /* LoginVC.swift in Sources */,
 				3BEBCEFC212205EA00E22B3F /* ChannelCell.swift in Sources */,
+				3BEBCF062122C39800E22B3F /* SocketService.swift in Sources */,
 				3B953C292105220500E56AC7 /* GradientView.swift in Sources */,
 				3B7C212D211788FC0069EB45 /* AvatarCell.swift in Sources */,
 				3BEBCF032122135C00E22B3F /* AddChannelVC.swift in Sources */,
