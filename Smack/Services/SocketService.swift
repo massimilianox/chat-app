@@ -40,7 +40,7 @@ class SocketService: NSObject {
         completion(true)
     }
     
-    func getChannel(completion: @escaping CompletionHandler) {
+    func getChannels(completion: @escaping CompletionHandler) {
         socket.on("channelCreated") { data, ack in
             
             // Parse data with SwiftyJSON

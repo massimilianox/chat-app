@@ -15,6 +15,7 @@ class MessageService {
     static let instance = MessageService()
     
     var channels = [Channel]()
+    var selectedChannel: Channel?
     
     // Using decodable
     // var channelDecodable = [ChannelDecodable]()
@@ -41,15 +42,18 @@ class MessageService {
                         let channel = Channel(id: item["_id"].stringValue, channelTitle: item["name"].stringValue, channelDescritpion: item["description"].stringValue)
                         self.channels.append(channel)
                     }
-
                     completion(true)
+                    NotificationCenter.default.post(name: NOTIF_CHANNELS_LOADED, object: nil)
                 }
-                
             } else {
                 completion(false)
                 debugPrint(response.result.error as Any)
             }
         }
+    }
+    
+    func clearChannels() {
+        channels.removeAll()
     }
     
 }

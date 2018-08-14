@@ -11,7 +11,7 @@ import Foundation
 typealias CompletionHandler = (_ Success: Bool) -> ()
 
 // URL constant
-let BASE_URL = "http://localhost:3005/v1/"
+let BASE_URL = "http://192.168.1.3:3005/v1/"
 let URL_REGISTER = "\(BASE_URL)account/register"
 let URL_LOGIN = "\(BASE_URL)account/login"
 let URL_ADD_USER = "\(BASE_URL)user/add"
@@ -19,10 +19,12 @@ let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 let URL_CHANNELS = "\(BASE_URL)channel"
 
 // colors
-let smakFormPlaceholer = #colorLiteral(red: 0, green: 0.3632077575, blue: 0.7506918311, alpha: 0.6)
+let ColorFormPlaceholer = #colorLiteral(red: 0, green: 0.3632077575, blue: 0.7506918311, alpha: 0.6)
 
 // notifications
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataChenge")
+let NOTIF_CHANNELS_LOADED = Notification.Name("notifChannelsLoaded")
+let NOTIF_CHANNEL_SELECTED = Notification.Name("notifChannelSelected")
 
 // segue
 let TO_LOGIN = "loginVC"

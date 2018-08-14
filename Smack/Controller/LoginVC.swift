@@ -21,8 +21,8 @@ class LoginVC: UIViewController {
     
     func setupView() {
         spinner.isHidden = true
-        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedStringKey.foregroundColor: smakFormPlaceholer])
-        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedStringKey.foregroundColor: smakFormPlaceholer])
+        emailTxt.attributedPlaceholder = NSAttributedString(string: "email", attributes: [NSAttributedStringKey.foregroundColor: ColorFormPlaceholer])
+        passwordTxt.attributedPlaceholder = NSAttributedString(string: "password", attributes: [NSAttributedStringKey.foregroundColor: ColorFormPlaceholer])
     }
     
     @IBAction func closePressed(_ sender: Any) {

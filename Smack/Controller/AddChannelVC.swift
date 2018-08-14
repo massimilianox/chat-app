@@ -14,10 +14,15 @@ class AddChannelVC: UIViewController {
     @IBOutlet weak var descriptionTxt: UITextField!
     @IBOutlet weak var bgView: UIView!
     
+    private var isEditingWinOut: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-
+        
+        // Notify the editing software keyboard on - off
+        NotificationCenter.default.addObserver(self, selector: #selector(AddChannelVC.editingIsTrue), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddChannelVC.editingIsFalse), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
 
     @IBAction func closePressed(_ sender: Any) {
@@ -26,29 +31,36 @@ class AddChannelVC: UIViewController {
     
     @IBAction func createChannelPressed(_ sender: Any) {
         
-        guard channelTxt.text != "" else {
-            return
-        }
-        guard descriptionTxt.text != "" else {
-            return
-        }
+        guard channelTxt.text != nil && channelTxt.text != "" else { return }
+        guard descriptionTxt.text != nil && descriptionTxt.text != "" else { return }
         
         SocketService.instance.addChannel(channelName: channelTxt.text!, channelDescription: descriptionTxt.text!) { (success) in
             if success {
-                print("YAY!")
                 self.dismiss(animated: true, completion: nil)
             }
         }
     }
     
     func setupView() {
-        channelTxt.attributedPlaceholder = NSAttributedString(string: "name", attributes: [NSAttributedStringKey.foregroundColor: smakFormPlaceholer])
-        descriptionTxt.attributedPlaceholder = NSAttributedString(string: "description", attributes: [NSAttributedStringKey.foregroundColor: smakFormPlaceholer])
+        channelTxt.attributedPlaceholder = NSAttributedString(string: "name", attributes: [NSAttributedStringKey.foregroundColor: ColorFormPlaceholer])
+        descriptionTxt.attributedPlaceholder = NSAttributedString(string: "description", attributes: [NSAttributedStringKey.foregroundColor: ColorFormPlaceholer])
         let closeTouch = UITapGestureRecognizer(target: self, action: #selector(AddChannelVC.closeTap(_:)))
         bgView.addGestureRecognizer(closeTouch)
     }
     
+    @objc func editingIsTrue() {
+        isEditingWinOut = true
+    }
+    
+    @objc func editingIsFalse() {
+        isEditingWinOut = false
+    }
+    
     @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
-        dismiss(animated: true, completion: nil)
+        if isEditingWinOut {
+            view.endEditing(true);
+        } else {
+            dismiss(animated: true, completion: nil)
+        }
     }
 }
