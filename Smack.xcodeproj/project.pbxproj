@@ -25,6 +25,7 @@
 		3B953C2521050B9C00E56AC7 /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B953C2421050B9C00E56AC7 /* ChatVC.swift */; };
 		3B953C2721050BAD00E56AC7 /* ChannelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B953C2621050BAD00E56AC7 /* ChannelVC.swift */; };
 		3B953C292105220500E56AC7 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B953C282105220500E56AC7 /* GradientView.swift */; };
+		3BA33AA92124145900E537E2 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA33AA82124145900E537E2 /* Message.swift */; };
 		3BE408A6211A2DC80042C152 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE408A5211A2DC80042C152 /* CircleImage.swift */; };
 		3BE7B262210909E200BC15E9 /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BE7B261210909E200BC15E9 /* CreateAccountVC.swift */; };
 		3BEBCEF32121E4AF00E22B3F /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEBCEF22121E4AF00E22B3F /* Channel.swift */; };
@@ -59,6 +60,7 @@
 		3B953C2421050B9C00E56AC7 /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
 		3B953C2621050BAD00E56AC7 /* ChannelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelVC.swift; sourceTree = "<group>"; };
 		3B953C282105220500E56AC7 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		3BA33AA82124145900E537E2 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		3BE408A5211A2DC80042C152 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		3BE7B261210909E200BC15E9 /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		3BEBCEF22121E4AF00E22B3F /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 			children = (
 				3BEBCEF22121E4AF00E22B3F /* Channel.swift */,
 				3BEBCEF92121FF7E00E22B3F /* ChannelDecodable.swift */,
+				3BA33AA82124145900E537E2 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				3BEBCF062122C39800E22B3F /* SocketService.swift in Sources */,
 				3B953C292105220500E56AC7 /* GradientView.swift in Sources */,
 				3B7C212D211788FC0069EB45 /* AvatarCell.swift in Sources */,
+				3BA33AA92124145900E537E2 /* Message.swift in Sources */,
 				3BEBCF032122135C00E22B3F /* AddChannelVC.swift in Sources */,
 				3B84F5702104F0B600F7D54D /* AppDelegate.swift in Sources */,
 				3B953C1F2105063800E56AC7 /* SWRevealViewController.m in Sources */,

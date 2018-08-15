@@ -35,7 +35,6 @@ class ChatVC: UIViewController {
                     NotificationCenter.default.post(name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
                 }
             }
-            // onLoginGetMessage()
         }
     }
     
@@ -48,14 +47,34 @@ class ChatVC: UIViewController {
     }
     
     @objc func onChannelSelected(_ notif: Notification) {
+        updateChannel()
+    }
+    
+    func updateChannel() {
         let channelTitle = MessageService.instance.selectedChannel?.channelTitle ?? ""
         titleLbl.text = "#\(channelTitle)"
+        getMessages()
     }
     
     func onLoginGetMessage() {
         MessageService.instance.findAllChannels { (success) in
             if success {
                 print("ChannelVC Channels fetched")
+                if MessageService.instance.channels.count > 0 {
+                    MessageService.instance.selectedChannel = MessageService.instance.channels[0]
+                    self.updateChannel()
+                } else {
+                    self.titleLbl.text = "No channel yet"
+                }
+            }
+        }
+    }
+    
+    func getMessages() {
+        guard let channelId = MessageService.instance.selectedChannel?.id else { return }
+        MessageService.instance.findAllMessagesForCahnnel(channelId: channelId) { (success) in
+            if success {
+                print("All messages retrived")
             }
         }
     }
