@@ -90,6 +90,15 @@ class MessageService {
         }
     }
     
+    // Convert an ISODate string into a Date object
+//    func formatDate(date: String) -> Date? {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+//        dateFormatter.dateFormat = "dd-MM-yyyy'T'HH:mm:ss.SSS'Z'"
+//        print("Date: \(String(describing: dateFormatter.date(from: date)))")
+//        return dateFormatter.date(from: date)
+//    }
+    
     func clearMessages() {
         messages.removeAll()
     }

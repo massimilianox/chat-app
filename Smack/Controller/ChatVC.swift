@@ -8,14 +8,17 @@
 
 import UIKit
 
-class ChatVC: UIViewController {
-
+class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var messageTxtBox: UITextField!
+    @IBOutlet weak var messagesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        messagesTableView.delegate = self
+        messagesTableView.dataSource = self
         
         // Extension of UIView
         // view.bindToKeyboard()
@@ -47,10 +50,36 @@ class ChatVC: UIViewController {
                 }
             }
         }
+        
+        SocketService.instance.getMessages { (success) in
+            if success {
+                print("Hey! messages fetched")
+                self.messagesTableView.reloadData()
+            }
+        }
+        
     }
     
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 1
+//    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return MessageService.instance.messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "messageCell", for: indexPath) as? MessageCell {
+            cell.configureCell(message: MessageService.instance.messages[indexPath.row])
+            return cell
+        }
+        
+        return UITableViewCell()
+    }
+    
+    
     @IBAction func sendMsgPressed(_ sender: Any) {
-        if AuthService.instance.isLoggedIn {
+        if AuthService.instance.isLoggedIn  && messageTxtBox.text != "" {
             guard let channelId = MessageService.instance.selectedChannel?.id else { return }
             guard let message = messageTxtBox.text else { return }
             let userId = UserDataService.instance.id
@@ -106,6 +135,7 @@ class ChatVC: UIViewController {
         MessageService.instance.findAllMessagesForCahnnel(channelId: channelId) { (success) in
             if success {
                 print("All messages retrived")
+                self.messagesTableView.reloadData()
             }
         }
     }

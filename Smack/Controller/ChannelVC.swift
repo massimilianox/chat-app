@@ -64,12 +64,6 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @objc func userDataDidChange(_ notif: Notification) {
         setupUserInfo()
-//        MessageService.instance.findAllChannels { (success) in
-//            if success {
-//                print("ChannelVC Channels fetched")
-//            }
-//        }
-//        tableView.reloadData()
     }
     
     @objc func channelsLoaded(_ notif: Notification) {
@@ -107,6 +101,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let channel = MessageService.instance.channels[indexPath.row]
         MessageService.instance.selectedChannel = channel
+        MessageService.instance.clearMessages()
         NotificationCenter.default.post(name: NOTIF_CHANNEL_SELECTED, object: nil)
         revealViewController().revealToggle(animated: true)
     }
