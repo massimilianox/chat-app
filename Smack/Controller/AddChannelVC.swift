@@ -14,13 +14,14 @@ class AddChannelVC: UIViewController {
     @IBOutlet weak var descriptionTxt: UITextField!
     @IBOutlet weak var bgView: UIView!
     
-    private var isEditingWinOut: Bool = false
+    private var isKeyboardOut: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         
-        // Notify the editing software keyboard on - off
+        // Notify the editing software keyboard on - off,
+        // TODO: with NSNotification.Name.UIKeyboardWillChangeFrame and toggle isKeyboardOut
         NotificationCenter.default.addObserver(self, selector: #selector(AddChannelVC.editingIsTrue), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(AddChannelVC.editingIsFalse), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
     }
@@ -49,15 +50,15 @@ class AddChannelVC: UIViewController {
     }
     
     @objc func editingIsTrue() {
-        isEditingWinOut = true
+        isKeyboardOut = true
     }
     
     @objc func editingIsFalse() {
-        isEditingWinOut = false
+        isKeyboardOut = false
     }
     
     @objc func closeTap(_ recognizer: UITapGestureRecognizer) {
-        if isEditingWinOut {
+        if isKeyboardOut {
             view.endEditing(true);
         } else {
             dismiss(animated: true, completion: nil)

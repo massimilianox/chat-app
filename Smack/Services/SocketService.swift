@@ -44,13 +44,17 @@ class SocketService: NSObject {
         socket.on("channelCreated") { data, ack in
             
             // Parse data with SwiftyJSON
-            // let json = JSON(data[0])
-            // let channel = Channel(id: json["id"].stringValue, channelTitle: json["name"].stringValue, channelDescritpion: json["description"].stringValue)
+//            let json = JSON(data[0])
+//            let channel = Channel(
+//                id: json["id"].stringValue,
+//                channelTitle: json["name"].stringValue,
+//                channelDescritpion: json["description"].stringValue
+//            )
             
             // Parse data with plain Swift
             guard let dictionary = data[0] as? Dictionary<String, Any> else { return }
             let channel = Channel(
-                id: dictionary["id"] as! String,
+                id: dictionary["_id"] as! String,
                 channelTitle: dictionary["name"] as! String,
                 channelDescritpion: dictionary["description"] as! String
             )
@@ -59,6 +63,13 @@ class SocketService: NSObject {
             
             completion(true)
         }
+    }
+    
+    // messageBody, userId, channelId, userName, userAvatar, userAvatarColor
+    func addMessage(messageBody: String, userId: String, channelId: String, completion: @escaping CompletionHandler) {
+        let user = UserDataService.instance
+        socket.emit("newMessage", messageBody, userId, channelId, user.name, user.avatarName, user.avatarColor)
+        completion(true)
     }
     
 }

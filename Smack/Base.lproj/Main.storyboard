@@ -623,17 +623,43 @@
                                     <constraint firstItem="6bC-Tc-0Ua" firstAttribute="leading" secondItem="mc8-0y-BAJ" secondAttribute="leading" constant="12" id="mho-we-ngT"/>
                                 </constraints>
                             </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Message:" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FbI-0Q-KrX">
+                                <rect key="frame" x="0.0" y="528" width="320" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="LWk-a9-ity"/>
+                                </constraints>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzj-KN-nFS">
+                                <rect key="frame" x="282" y="533" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="OwW-Le-r8d"/>
+                                    <constraint firstAttribute="width" constant="30" id="bDd-1k-QgR"/>
+                                </constraints>
+                                <state key="normal" image="send"/>
+                                <connections>
+                                    <action selector="sendMsgPressed:" destination="XIX-y0-L3Y" eventType="touchUpInside" id="aq1-pM-fIW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="mc8-0y-BAJ" firstAttribute="leading" secondItem="0Rd-aY-UNh" secondAttribute="leading" id="7UX-Z1-pvp"/>
+                            <constraint firstItem="0Rd-aY-UNh" firstAttribute="trailing" secondItem="Vzj-KN-nFS" secondAttribute="trailing" constant="8" id="8Qe-cC-LXc"/>
+                            <constraint firstItem="FbI-0Q-KrX" firstAttribute="bottom" secondItem="0Rd-aY-UNh" secondAttribute="bottom" id="JFl-km-P8w"/>
                             <constraint firstItem="mc8-0y-BAJ" firstAttribute="top" secondItem="B2P-D4-AK6" secondAttribute="top" id="WC7-VD-8zV"/>
+                            <constraint firstItem="Vzj-KN-nFS" firstAttribute="centerY" secondItem="FbI-0Q-KrX" secondAttribute="centerY" id="ZNF-1Z-mIe"/>
+                            <constraint firstItem="0Rd-aY-UNh" firstAttribute="trailing" secondItem="FbI-0Q-KrX" secondAttribute="trailing" id="c4O-pU-2Wk"/>
                             <constraint firstItem="mc8-0y-BAJ" firstAttribute="trailing" secondItem="0Rd-aY-UNh" secondAttribute="trailing" id="j2e-Ht-fXb"/>
+                            <constraint firstItem="FbI-0Q-KrX" firstAttribute="leading" secondItem="0Rd-aY-UNh" secondAttribute="leading" id="wc3-TG-YlW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Rd-aY-UNh"/>
                     </view>
                     <connections>
                         <outlet property="menuBtn" destination="6bC-Tc-0Ua" id="1y2-Jd-JbT"/>
+                        <outlet property="messageTxtBox" destination="FbI-0Q-KrX" id="Yez-ku-jZ9"/>
                         <outlet property="titleLbl" destination="mKF-W4-k7d" id="Z3v-dX-Zll"/>
                     </connections>
                 </viewController>
@@ -647,6 +673,7 @@
         <image name="closeButton" width="28" height="28"/>
         <image name="menuProfileIcon" width="99" height="99"/>
         <image name="profileDefault" width="192" height="192"/>
+        <image name="send" width="30" height="30"/>
         <image name="smackBack" width="28" height="28"/>
         <image name="smackBurger" width="40" height="40"/>
         <image name="smackLogo" width="48" height="40"/>

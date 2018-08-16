@@ -12,9 +12,17 @@ class ChatVC: UIViewController {
 
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var titleLbl: UILabel!
+    @IBOutlet weak var messageTxtBox: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Extension of UIView
+        // view.bindToKeyboard()
+        
+        // Tap recognizer to close the keyboard
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap))
+        view.addGestureRecognizer(tap)
         
         // Set the action touchUpInside with #selector to SWRevealViewController.revealToggle(_:)
         menuBtn.addTarget(self.revealViewController(), action: #selector(SWRevealViewController.revealToggle(_:)), for: .touchUpInside)
@@ -24,6 +32,9 @@ class ChatVC: UIViewController {
         
         // Gesture recognizer built in SWRevealViewController to open the view at a tap
         self.view.addGestureRecognizer(self.revealViewController().tapGestureRecognizer())
+        
+        // Bound the view to the keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         
@@ -36,6 +47,26 @@ class ChatVC: UIViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func sendMsgPressed(_ sender: Any) {
+        if AuthService.instance.isLoggedIn {
+            guard let channelId = MessageService.instance.selectedChannel?.id else { return }
+            guard let message = messageTxtBox.text else { return }
+            let userId = UserDataService.instance.id
+            
+            SocketService.instance.addMessage(messageBody: message, userId: userId, channelId: channelId) { (success) in
+                if success {
+                    self.messageTxtBox.text = ""
+                    self.messageTxtBox.resignFirstResponder()
+                }
+            }
+        }
+    }
+    
+    @objc func handleTap() {
+        print("Tapped!")
+        view.endEditing(true)
     }
     
     @objc func userDataDidChange(_ notif: Notification) {
@@ -77,6 +108,21 @@ class ChatVC: UIViewController {
                 print("All messages retrived")
             }
         }
+    }
+    
+    @objc func keyboardWillChange(_ notification: NSNotification) {
+        let duration = notification.userInfo![UIKeyboardAnimationDurationUserInfoKey] as! Double
+        let curve = notification.userInfo![UIKeyboardAnimationCurveUserInfoKey] as! UInt
+        let curFrame = (notification.userInfo![UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let targetFrame = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let deltaY = targetFrame.origin.y - curFrame.origin.y
+        
+        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIViewKeyframeAnimationOptions(rawValue: curve), animations: {
+            self.view.frame.origin.y += deltaY
+            
+        },completion: {(true) in
+            self.view.layoutIfNeeded()
+        })
     }
 
 }
