@@ -631,6 +631,9 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="KohinoorDevanagari-Regular" family="Kohinoor Devanagari" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="messageTxtBoxEditing:" destination="XIX-y0-L3Y" eventType="editingChanged" id="U33-so-yEf"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vzj-KN-nFS">
                                 <rect key="frame" x="282" y="533" width="30" height="30"/>
@@ -724,6 +727,7 @@
                         <outlet property="menuBtn" destination="6bC-Tc-0Ua" id="1y2-Jd-JbT"/>
                         <outlet property="messageTxtBox" destination="FbI-0Q-KrX" id="Yez-ku-jZ9"/>
                         <outlet property="messagesTableView" destination="UJI-Sk-sXY" id="Lqp-4V-lXE"/>
+                        <outlet property="sendMessageBtn" destination="Vzj-KN-nFS" id="a2O-9Q-kpD"/>
                         <outlet property="titleLbl" destination="mKF-W4-k7d" id="Z3v-dX-Zll"/>
                     </connections>
                 </viewController>

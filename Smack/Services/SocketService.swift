@@ -54,13 +54,12 @@ class SocketService: NSObject {
             // Parse data with plain Swift
             guard let dictionary = data[0] as? Dictionary<String, Any> else { return }
             let channel = Channel(
-                id: dictionary["_id"] as? String,
-                channelTitle: dictionary["name"] as? String,
-                channelDescritpion: dictionary["description"] as? String
+                id: dictionary["_id"] as? String ?? "",
+                channelTitle: dictionary["name"] as? String ?? "",
+                channelDescritpion: dictionary["description"] as? String ?? ""
             )
             
             MessageService.instance.channels.append(channel)
-            
             completion(true)
         }
     }
@@ -71,33 +70,25 @@ class SocketService: NSObject {
         completion(true)
     }
     
-    func getMessages(completion: @escaping CompletionHandler) {
+    func getChatMessage(completion: @escaping CompletionHandler) {
         socket.on("messageCreated") { (data, ack) in
-            
-            print("data: \(data)")
-            
             guard let dictionary = data[0] as? Dictionary<String, Any> else { return }
-            
-            print("dictionary: \(dictionary)")
-            
-            let message = Message(
-                id: dictionary["id"] as? String,
-                messagebody: dictionary["messageBody"] as? String,
-                userId: dictionary["userId"] as? String,
-                channelId: dictionary["channelId"] as? String,
-                userName: dictionary["userName"] as? String,
-                userAvatar: dictionary["userAvatar"] as? String,
-                userAvatarColor: dictionary["userAvatarColor"] as? String,
-                timeStamp: dictionary["timeStamp"] as? String
-            )
-            
-            print("message: \(message)")
-            
-            MessageService.instance.messages.append(message)
-            
-            print("messages: \(MessageService.instance.messages)")
-            
-            completion(true)
+            if dictionary["channelId"] as? String == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn {
+                let message = Message(
+                    id: dictionary["id"] as? String ?? "",
+                    messagebody: dictionary["messageBody"] as? String ?? "",
+                    userId: dictionary["userId"] as? String ?? "",
+                    channelId: dictionary["channelId"] as? String ?? "",
+                    userName: dictionary["userName"] as? String ?? "",
+                    userAvatar: dictionary["userAvatar"] as? String ?? "",
+                    userAvatarColor: dictionary["userAvatarColor"] as? String ?? "",
+                    timeStamp: dictionary["timeStamp"] as? String ?? ""
+                )
+                MessageService.instance.messages.append(message)
+                completion(true)
+            } else {
+                completion(false)
+            }
         }
     }
     

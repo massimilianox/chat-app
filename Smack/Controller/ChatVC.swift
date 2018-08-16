@@ -14,14 +14,15 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var titleLbl: UILabel!
     @IBOutlet weak var messageTxtBox: UITextField!
     @IBOutlet weak var messagesTableView: UITableView!
+    @IBOutlet weak var sendMessageBtn: UIButton!
+    
+    var isTyping: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         messagesTableView.delegate = self
         messagesTableView.dataSource = self
-        
-        // Extension of UIView
-        // view.bindToKeyboard()
+        sendMessageBtn.isHidden = true
         
         // Tap recognizer to close the keyboard
         let tap = UITapGestureRecognizer(target: self, action: #selector(ChatVC.handleTap))
@@ -51,15 +52,18 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        SocketService.instance.getMessages { (success) in
+        SocketService.instance.getChatMessage { (success) in
             if success {
-                print("Hey! messages fetched")
+                print("Hey! message fetched")
                 self.messagesTableView.reloadData()
+                let lastMessageIdx = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
+                self.messagesTableView.scrollToRow(at: lastMessageIdx, at: .bottom, animated: true)
             }
         }
         
     }
     
+    // Unnecessary stuff from the lesson
 //    func numberOfSections(in tableView: UITableView) -> Int {
 //        return 1
 //    }
@@ -79,7 +83,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     @IBAction func sendMsgPressed(_ sender: Any) {
-        if AuthService.instance.isLoggedIn  && messageTxtBox.text != "" {
+        if AuthService.instance.isLoggedIn && messageTxtBox.text != "" {
             guard let channelId = MessageService.instance.selectedChannel?.id else { return }
             guard let message = messageTxtBox.text else { return }
             let userId = UserDataService.instance.id
@@ -93,6 +97,16 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    @IBAction func messageTxtBoxEditing(_ sender: Any) {
+        if messageTxtBox.text == "" {
+            isTyping = false
+            sendMessageBtn.isHidden = true
+        } else {
+            isTyping = true
+            sendMessageBtn.isHidden = false
+        }
+    }
+    
     @objc func handleTap() {
         print("Tapped!")
         view.endEditing(true)
@@ -103,6 +117,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             onLoginGetMessage()
         } else {
             titleLbl.text = "Please log in"
+            self.messagesTableView.reloadData()
         }
     }
     
@@ -119,7 +134,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func onLoginGetMessage() {
         MessageService.instance.findAllChannels { (success) in
             if success {
-                print("ChannelVC Channels fetched")
+                print("ChatVC channels fetched")
                 if MessageService.instance.channels.count > 0 {
                     MessageService.instance.selectedChannel = MessageService.instance.channels[0]
                     self.updateChannel()
@@ -134,7 +149,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         guard let channelId = MessageService.instance.selectedChannel?.id else { return }
         MessageService.instance.findAllMessagesForCahnnel(channelId: channelId) { (success) in
             if success {
-                print("All messages retrived")
+                print("ChatVC messages fetched")
                 self.messagesTableView.reloadData()
             }
         }
@@ -149,7 +164,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIViewKeyframeAnimationOptions(rawValue: curve), animations: {
             self.view.frame.origin.y += deltaY
-            
         },completion: {(true) in
             self.view.layoutIfNeeded()
         })
