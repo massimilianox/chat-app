@@ -41,6 +41,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("Hey! foreign message fetched")
                 MessageService.instance.foreignMessages.append(newMessage.channelId)
                 self.channelsTableView.reloadData()
+                
             }
         }
         
@@ -98,10 +99,8 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "channelCell", for: indexPath) as? ChannelCell {
             let channelCell = MessageService.instance.channels[indexPath.row]
             cell.configureCell(channel: channelCell)
-            
             return cell
         }
-        
         return UITableViewCell()
     }
     
@@ -113,18 +112,19 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         NotificationCenter.default.post(name: NOTIF_CHANNEL_SELECTED, object: nil)
         revealViewController().revealToggle(animated: true)
         
-        let newMessagesForChannelSelected = MessageService.instance.foreignMessages.filter({ (channelId) -> Bool in
-            channelId == channel.id
-        })
-        
-        if newMessagesForChannelSelected.count > 0 {
+        // Check if there's any new message for the selected channel, if yes then update data and tableCell
+        let newMessagesForChannelSelected = MessageService.instance.foreignMessages.contains(channel.id)
+        if newMessagesForChannelSelected {
+            // Update data
             MessageService.instance.foreignMessages = MessageService.instance.foreignMessages.filter({ (channelId) -> Bool in
                 channelId != channel.id
             })
+            // Reload cell content
             let idx = IndexPath(row: indexPath.row, section: 0)
             channelsTableView.reloadRows(at: [idx], with: .none)
-            channelsTableView.reloadData()
+            channelsTableView.selectRow(at: idx, animated: false, scrollPosition: .none)
         }
+        
     }
     
 }

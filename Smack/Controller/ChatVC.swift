@@ -124,6 +124,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.messageTxtBox.text = ""
                     self.messageTxtBox.resignFirstResponder()
                     SocketService.instance.socket.emit("stopType", UserDataService.instance.name, channelId)
+                    self.isTyping = false
                 }
             }
         }
@@ -131,6 +132,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func messageTxtBoxEditing(_ sender: Any) {
         guard let channelId = MessageService.instance.selectedChannel?.id else { return }
+        
         if messageTxtBox.text == "" {
             if isTyping {
                 sendMessageBtn.isHidden = true
