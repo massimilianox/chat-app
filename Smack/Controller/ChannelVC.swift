@@ -41,7 +41,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("Hey! foreign message fetched")
                 MessageService.instance.foreignMessages.append(newMessage.channelId)
                 self.channelsTableView.reloadData()
-                
+                self.selectChannelRow()
             }
         }
         
@@ -67,27 +67,6 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let addChannelVC = AddChannelVC()
             addChannelVC.modalPresentationStyle = .custom
             present(addChannelVC, animated: true, completion: nil)
-        }
-    }
-    
-    @objc func userDataDidChange(_ notif: Notification) {
-        setupUserInfo()
-    }
-    
-    @objc func channelsLoaded(_ notif: Notification) {
-        channelsTableView.reloadData()
-    }
-    
-    func setupUserInfo() {
-        if AuthService.instance.isLoggedIn {
-            loginBtn.setTitle(UserDataService.instance.name, for: .normal)
-            avatarImg.image = UIImage(named: UserDataService.instance.avatarName)
-            avatarImg.backgroundColor = UserDataService.instance.returnUIColor(component: UserDataService.instance.avatarColor)
-        } else {
-            loginBtn.setTitle("Login", for: .normal)
-            avatarImg.image = UIImage(named: "profileDefault")
-            avatarImg.backgroundColor = UIColor.clear
-            channelsTableView.reloadData()
         }
     }
     
@@ -124,7 +103,38 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             channelsTableView.reloadRows(at: [idx], with: .none)
             channelsTableView.selectRow(at: idx, animated: false, scrollPosition: .none)
         }
-        
+    }
+    
+    @objc func userDataDidChange(_ notif: Notification) {
+        selectChannelRow()
+        setupUserInfo()
+    }
+    
+    @objc func channelsLoaded(_ notif: Notification) {
+        channelsTableView.reloadData()
+    }
+    
+    func setupUserInfo() {
+        if AuthService.instance.isLoggedIn {
+            loginBtn.setTitle(UserDataService.instance.name, for: .normal)
+            avatarImg.image = UIImage(named: UserDataService.instance.avatarName)
+            avatarImg.backgroundColor = UserDataService.instance.returnUIColor(component: UserDataService.instance.avatarColor)
+        } else {
+            loginBtn.setTitle("Login", for: .normal)
+            avatarImg.image = UIImage(named: "profileDefault")
+            avatarImg.backgroundColor = UIColor.clear
+            channelsTableView.reloadData()
+        }
+    }
+    
+    func selectChannelRow() {
+        let idx = MessageService.instance.channels.index(where: { (obj) -> Bool in
+            obj.id == MessageService.instance.selectedChannel?.id
+        })
+        if idx != nil {
+            let indexPath = IndexPath(row: idx!, section: 0)
+            self.channelsTableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
     }
     
 }
