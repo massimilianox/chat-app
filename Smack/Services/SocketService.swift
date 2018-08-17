@@ -24,7 +24,7 @@ class SocketService: NSObject {
     
     // work around
     let manager = SocketManager(socketURL: URL(string: BASE_URL)!)
-    lazy var socket: SocketIOClient = manager.defaultSocket
+    lazy var socket: SocketIOClient = manager.defaultSocket // lazy cos self is not yet available, property initializer run before self is available
    
     
     func establishConnection() {
@@ -92,4 +92,25 @@ class SocketService: NSObject {
         }
     }
     
+    func getTypingUsers(_ completionHandler: @escaping (_ typingUsers: [String: String]) -> Void) {
+        socket.on("userTypingUpdate") { (data, ack) in
+            guard let typingUsers = data[0] as? Dictionary<String, String> else { return }
+            
+            completionHandler(typingUsers)
+        }
+    }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
