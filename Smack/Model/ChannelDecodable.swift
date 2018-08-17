@@ -9,7 +9,7 @@
 import Foundation
 
 struct ChannelDecodable: Decodable { // Decodable protocol, must include all the key from
-                                     // the response, if there's no match it trhows an error
+                                     // the response, if there's no match it throws an error
     
     public private(set) var _id: String!
     public private(set) var name: String!

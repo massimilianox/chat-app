@@ -58,7 +58,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         SocketService.instance.getChatMessage { (newMessage) in
             if newMessage.channelId == MessageService.instance.selectedChannel?.id {
-                print("Hey! message fetched")
                 MessageService.instance.messages.append(newMessage)
                 self.messagesTableView.reloadData()
                 let lastMessageIdx = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
@@ -95,11 +94,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    // Unecessary stuff from the lesson
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 1
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return MessageService.instance.messages.count
     }
@@ -125,6 +119,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.messageTxtBox.resignFirstResponder()
                     SocketService.instance.socket.emit("stopType", UserDataService.instance.name, channelId)
                     self.isTyping = false
+                    self.sendMessageBtn.isHidden = true
                 }
             }
         }
@@ -149,7 +144,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func handleTap() {
-        print("Tapped!")
         view.endEditing(true)
     }
     
@@ -175,7 +169,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func onLoginGetMessage() {
         MessageService.instance.findAllChannels { (success) in
             if success {
-                print("ChatVC channels fetched")
                 if MessageService.instance.channels.count > 0 {
                     MessageService.instance.selectedChannel = MessageService.instance.channels[0]
                     self.updateChannel()
@@ -190,7 +183,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         guard let channelId = MessageService.instance.selectedChannel?.id else { return }
         MessageService.instance.findAllMessagesForCahnnel(channelId: channelId) { (success) in
             if success {
-                print("ChatVC messages fetched")
                 self.messagesTableView.reloadData()
             }
         }

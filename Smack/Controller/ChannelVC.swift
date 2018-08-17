@@ -11,6 +11,7 @@ import UIKit
 class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func performUnwindSegue(segue: UIStoryboardSegue) {}
+    
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var avatarImg: CircleImage!
     @IBOutlet weak var channelsTableView: UITableView!
@@ -20,6 +21,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
         channelsTableView.delegate = self
         channelsTableView.dataSource = self
+        selectChannelRow()
         
         // set SWRevealViewController
         self.revealViewController().rearViewRevealWidth = self.view.frame.width - 60
@@ -33,12 +35,12 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         SocketService.instance.getChannels { (success) in
             if success {
                 self.channelsTableView.reloadData()
+                self.selectChannelRow()
             }
         }
         
         SocketService.instance.getChatMessage { (newMessage) in
             if newMessage.channelId != MessageService.instance.selectedChannel?.id {
-                print("Hey! foreign message fetched")
                 MessageService.instance.foreignMessages.append(newMessage.channelId)
                 self.channelsTableView.reloadData()
                 self.selectChannelRow()
@@ -106,12 +108,12 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func userDataDidChange(_ notif: Notification) {
-        selectChannelRow()
         setupUserInfo()
     }
     
     @objc func channelsLoaded(_ notif: Notification) {
         channelsTableView.reloadData()
+        selectChannelRow()
     }
     
     func setupUserInfo() {

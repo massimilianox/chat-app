@@ -87,9 +87,6 @@ class AuthService {
                 let json = JSON(data)
                 self.userEmail = json["user"].stringValue // .stringvalue implicitly and safely unwrap a value
                 self.authToken = json["token"].stringValue
-                
-                debugPrint("request login: \(self.userEmail), \(self.authToken)")
-                
                 self.isLoggedIn = true
                 completion(true)
             } else {
