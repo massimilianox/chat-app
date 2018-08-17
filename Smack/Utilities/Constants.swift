@@ -19,8 +19,11 @@ let URL_USER_BY_EMAIL = "\(BASE_URL)user/byEmail/"
 let URL_CHANNELS = "\(BASE_URL)channel"
 let URL_MESSAGES_BY_CHANNEL = "\(BASE_URL)message/byChannel/"
 
-// colors
+// UI
 let ColorFormPlaceholer = #colorLiteral(red: 0, green: 0.3632077575, blue: 0.7506918311, alpha: 0.6)
+let DefaultFontRegular = "KohinoorDevanagari-Regular"
+let DefaultFontSemibold = "KohinoorDevanagari-Semibold"
+let DefaultFontSize: CGFloat = 15
 
 // notifications
 let NOTIF_USER_DATA_DID_CHANGE = Notification.Name("notifUserDataChenge")

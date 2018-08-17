@@ -41,10 +41,13 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Bound the view to the keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
+        // Listen on user data update
         NotificationCenter.default.addObserver(self, selector: #selector(userDataDidChange(_:)), name: NOTIF_USER_DATA_DID_CHANGE, object: nil)
         
+        // Listen on chennel is selected
         NotificationCenter.default.addObserver(self, selector: #selector(onChannelSelected(_:)), name: NOTIF_CHANNEL_SELECTED, object: nil)
         
+        // Load user data if logged-in
         if AuthService.instance.isLoggedIn {
             AuthService.instance.findUserByEmail { (success) in
                 if success {
@@ -53,9 +56,10 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         }
         
-        SocketService.instance.getChatMessage { (success) in
-            if success {
+        SocketService.instance.getChatMessage { (newMessage) in
+            if newMessage.channelId == MessageService.instance.selectedChannel?.id {
                 print("Hey! message fetched")
+                MessageService.instance.messages.append(newMessage)
                 self.messagesTableView.reloadData()
                 let lastMessageIdx = IndexPath(row: MessageService.instance.messages.count - 1, section: 0)
                 self.messagesTableView.scrollToRow(at: lastMessageIdx, at: .bottom, animated: true)

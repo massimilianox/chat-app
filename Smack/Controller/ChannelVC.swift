@@ -11,16 +11,15 @@ import UIKit
 class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBAction func performUnwindSegue(segue: UIStoryboardSegue) {}
-    
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var avatarImg: CircleImage!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var channelsTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
+        channelsTableView.delegate = self
+        channelsTableView.dataSource = self
         
         // set SWRevealViewController
         self.revealViewController().rearViewRevealWidth = self.view.frame.width - 60
@@ -33,7 +32,15 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         SocketService.instance.getChannels { (success) in
             if success {
-                self.tableView.reloadData()
+                self.channelsTableView.reloadData()
+            }
+        }
+        
+        SocketService.instance.getChatMessage { (newMessage) in
+            if newMessage.channelId != MessageService.instance.selectedChannel?.id {
+                print("Hey! foreign message fetched")
+                MessageService.instance.foreignMessages.append(newMessage.channelId)
+                self.channelsTableView.reloadData()
             }
         }
         
@@ -67,7 +74,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func channelsLoaded(_ notif: Notification) {
-        tableView.reloadData()
+        channelsTableView.reloadData()
     }
     
     func setupUserInfo() {
@@ -79,7 +86,7 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             loginBtn.setTitle("Login", for: .normal)
             avatarImg.image = UIImage(named: "profileDefault")
             avatarImg.backgroundColor = UIColor.clear
-            tableView.reloadData()
+            channelsTableView.reloadData()
         }
     }
     
@@ -102,8 +109,22 @@ class ChannelVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let channel = MessageService.instance.channels[indexPath.row]
         MessageService.instance.selectedChannel = channel
         MessageService.instance.clearMessages()
+        
         NotificationCenter.default.post(name: NOTIF_CHANNEL_SELECTED, object: nil)
         revealViewController().revealToggle(animated: true)
+        
+        let newMessagesForChannelSelected = MessageService.instance.foreignMessages.filter({ (channelId) -> Bool in
+            channelId == channel.id
+        })
+        
+        if newMessagesForChannelSelected.count > 0 {
+            MessageService.instance.foreignMessages = MessageService.instance.foreignMessages.filter({ (channelId) -> Bool in
+                channelId != channel.id
+            })
+            let idx = IndexPath(row: indexPath.row, section: 0)
+            channelsTableView.reloadRows(at: [idx], with: .none)
+            channelsTableView.reloadData()
+        }
     }
     
 }

@@ -149,8 +149,8 @@
                     </view>
                     <connections>
                         <outlet property="avatarImg" destination="KaW-Yd-JS3" id="WIf-Sh-yQV"/>
+                        <outlet property="channelsTableView" destination="SSk-vR-FTV" id="J1s-f9-0kO"/>
                         <outlet property="loginBtn" destination="V7n-zA-AGF" id="2sB-Ff-tm3"/>
-                        <outlet property="tableView" destination="SSk-vR-FTV" id="J1s-f9-0kO"/>
                         <segue destination="6es-he-fvf" kind="show" identifier="loginVC" id="oEN-pi-Ykh"/>
                     </connections>
                 </viewController>

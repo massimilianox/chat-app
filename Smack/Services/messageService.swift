@@ -16,6 +16,7 @@ class MessageService {
     
     var channels = [Channel]()
     var messages = [Message]()
+    var foreignMessages = [String]()
     var selectedChannel: Channel?
     
     // Using decodable

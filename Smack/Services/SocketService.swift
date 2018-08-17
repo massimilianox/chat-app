@@ -70,10 +70,11 @@ class SocketService: NSObject {
         completion(true)
     }
     
-    func getChatMessage(completion: @escaping CompletionHandler) {
+    func getChatMessage(completion: @escaping (_ newMessage: Message) -> Void) {
         socket.on("messageCreated") { (data, ack) in
             guard let dictionary = data[0] as? Dictionary<String, Any> else { return }
-            if dictionary["channelId"] as? String == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn {
+            
+            if AuthService.instance.isLoggedIn {
                 let message = Message(
                     id: dictionary["id"] as? String ?? "",
                     messagebody: dictionary["messageBody"] as? String ?? "",
@@ -84,11 +85,28 @@ class SocketService: NSObject {
                     userAvatarColor: dictionary["userAvatarColor"] as? String ?? "",
                     timeStamp: dictionary["timeStamp"] as? String ?? ""
                 )
-                MessageService.instance.messages.append(message)
-                completion(true)
-            } else {
-                completion(false)
+                completion(message)
             }
+            
+            // before upgraded to handle messages from different channels
+//            if dictionary["channelId"] as? String == MessageService.instance.selectedChannel?.id && AuthService.instance.isLoggedIn {
+//                let message = Message(
+//                    id: dictionary["id"] as? String ?? "",
+//                    messagebody: dictionary["messageBody"] as? String ?? "",
+//                    userId: dictionary["userId"] as? String ?? "",
+//                    channelId: dictionary["channelId"] as? String ?? "",
+//                    userName: dictionary["userName"] as? String ?? "",
+//                    userAvatar: dictionary["userAvatar"] as? String ?? "",
+//                    userAvatarColor: dictionary["userAvatarColor"] as? String ?? "",
+//                    timeStamp: dictionary["timeStamp"] as? String ?? ""
+//                )
+//                MessageService.instance.messages.append(message)
+//                completion(true)
+//            } else {
+//                completion(false)
+//            }
+            
+            
         }
     }
     
